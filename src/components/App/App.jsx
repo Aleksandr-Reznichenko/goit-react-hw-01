@@ -1,3 +1,18 @@
+import { Profile } from '../Profile/Profile';
+import userData from '../Profile/userData.json';
+
+import css from './App.module.css';
+
 export const App = () => {
-  return <></>;
+  return (
+    <div className={css.container}>
+      <Profile
+        name={userData.username}
+        tag={userData.tag}
+        location={userData.location}
+        image={userData.avatar}
+        stats={userData.stats}
+      />
+    </div>
+  );
 };
