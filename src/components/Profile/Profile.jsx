@@ -1,29 +1,24 @@
 import css from './Profile.module.css';
 
-export const Profile = ({ name, tag, location, image, stats }) => {
+export default function Profile({ name, tag, location, image, stats }) {
+  const statsData = Object.entries(stats);
+
   return (
-    <div className={css.container}>
+    <section className={css.profile}>
       <div className={css.userInfo}>
         <img className={css.avatar} src={image} alt={name} />
         <p className={css.name}>{name}</p>
         <p className={css.tag}>@{tag}</p>
         <p className={css.location}>{location}</p>
       </div>
-
       <ul className={css.stats}>
-        <li className={css.statsItem}>
-          <span>Followers</span>
-          <span>{stats.followers}</span>
-        </li>
-        <li className={css.statsItem}>
-          <span>Views</span>
-          <span>{stats.views}</span>
-        </li>
-        <li className={css.statsItem}>
-          <span>Likes</span>
-          <span>{stats.likes}</span>
-        </li>
+        {statsData.map(([idx, value]) => (
+          <li key={idx} className={css.statsItem}>
+            <span>{idx[0].toUpperCase() + idx.slice(1)}</span>
+            <span className={css.statsValue}>{value}</span>
+          </li>
+        ))}
       </ul>
-    </div>
+    </section>
   );
-};
+}
